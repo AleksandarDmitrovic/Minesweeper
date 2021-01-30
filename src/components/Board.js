@@ -45,31 +45,37 @@ export default function Board() {
       }
       setGrid(newGrid);
     } else {
-      let newRevealedBoard = revealed(newGrid, x, y)
-
-      setGrid(newRevealedBoard.arr)
+      let newRevealedBoard = revealed(newGrid, x, y, nonMineCount)
+      setGrid(newRevealedBoard.arr);
+      setNonMineCount(newRevealedBoard.newNonMinesCount)
     }
   }
 
 
 
 
-  return grid.map((singleRow, index1) => {
+  return (
+    <div>
+      <p>{nonMineCount}</p>
+      { grid.map((singleRow, index1) => {
 
-    return (
-      <div style={{ display: "flex" }} key={index1}>
-        {singleRow.map((singleBlock, index2) => {
-          return (
-            <Cell
-              details={singleBlock}
-              updateFlag={updateFlag}
-              revealCell={revealCell}
-              key={index2}
-            />
-          )
-        })}
-      </div>
-    )
-  });
+        return (
+          <div style={{ display: "flex" }} key={index1}>
+            {singleRow.map((singleBlock, index2) => {
+              return (
+                <Cell
+                  details={singleBlock}
+                  updateFlag={updateFlag}
+                  revealCell={revealCell}
+                  key={index2}
+                />
+              )
+            })}
+          </div>
+        )
+      })}
+    </div>
+  )
+
 
 }
