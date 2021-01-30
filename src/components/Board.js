@@ -37,6 +37,7 @@ export default function Board() {
 
   // Reveal Cell
   const revealCell = (x, y) => {
+    // Reveal once only
     if (grid[x][y].revealed) {
       return;
     }
