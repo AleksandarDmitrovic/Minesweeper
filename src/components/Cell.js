@@ -18,7 +18,7 @@ const style = {
   cellStyle: {
     width: 40,
     height: 40,
-    border: "2px solid green",
+    border: "0.5px solid green",
     background: "lightgrey",
     display: "flex",
     justifyContent: "center",

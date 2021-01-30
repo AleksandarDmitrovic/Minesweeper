@@ -5,13 +5,16 @@ import revealed from "../helpers/reveal";
 
 export default function Board() {
   const [grid, setGrid] = useState([]);
+  const [nonMineCount, setNonMineCount] = useState(0);
+  const [mineLocations, setMineLocations] = useState([]);
 
   // ComponentDidMount
   useEffect(() => {
     //Creating a board
     function freshBoard() {
       const newBoard = createBoard(16, 16, 40);
-      console.log(newBoard);
+      setNonMineCount(16 * 16 - 40);
+      setMineLocations(newBoard.mineLocation);
       setGrid(newBoard.board);
     }
 
@@ -36,7 +39,11 @@ export default function Board() {
   const revealCell = (x, y) => {
     let newGrid = JSON.parse(JSON.stringify(grid));
     if (newGrid[x][y].value === "X") {
-      alert('game over')
+      alert('game over');
+      for (let i = 0; i < mineLocations.length; i++) {
+        newGrid[mineLocations[i][0]][mineLocations[i][1]].revealed = true;
+      }
+      setGrid(newGrid);
     } else {
       let newRevealedBoard = revealed(newGrid, x, y)
 
