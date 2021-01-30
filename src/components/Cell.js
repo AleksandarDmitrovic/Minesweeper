@@ -8,8 +8,8 @@ export default function Cell(props) {
       onContextMenu={(event) => updateFlag(event, details.x, details.y)}
       onClick={() => revealCell(details.x, details.y)}
       style={style.cellStyle} >
-      {/* { details.revealed ? details.value : ""} */}
-      { details.value !== 0 && details.value}
+      { details.revealed ? details.value : ""}
+      {/* { details.value !== 0 && details.value} */}
     </ div>
   )
 };

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import createBoard from "../helpers/createBoard";
 import Cell from "./Cell";
+import revealed from "../helpers/reveal";
 
 export default function Board() {
   const [grid, setGrid] = useState([]);
@@ -37,8 +38,9 @@ export default function Board() {
     if (newGrid[x][y].value === "X") {
       alert('game over')
     } else {
-      newGrid[x][y].revealed = true;
-      setGrid(newGrid)
+      let newRevealedBoard = revealed(newGrid, x, y)
+
+      setGrid(newRevealedBoard.arr)
     }
   }
 
