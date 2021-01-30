@@ -18,9 +18,10 @@ const style = {
     width: 40,
     height: 40,
     border: "2px solid green",
-    background: "grey",
+    background: "lightgrey",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    cursor: "pointer",
   }
 };

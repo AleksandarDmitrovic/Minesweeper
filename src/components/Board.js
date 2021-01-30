@@ -34,8 +34,12 @@ export default function Board() {
   // Reveal Cell
   const revealCell = (x, y) => {
     let newGrid = JSON.parse(JSON.stringify(grid));
-    newGrid[x][y].revealed = true;
-    setGrid(newGrid)
+    if (newGrid[x][y].value === "X") {
+      alert('game over')
+    } else {
+      newGrid[x][y].revealed = true;
+      setGrid(newGrid)
+    }
   }
 
 
