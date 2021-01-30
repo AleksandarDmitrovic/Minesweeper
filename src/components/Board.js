@@ -37,6 +37,10 @@ export default function Board() {
 
   // Reveal Cell
   const revealCell = (x, y) => {
+    if (grid[x][y].revealed) {
+      return;
+    }
+
     let newGrid = JSON.parse(JSON.stringify(grid));
     if (newGrid[x][y].value === "X") {
       alert('game over');
@@ -57,23 +61,25 @@ export default function Board() {
   return (
     <div>
       <p>{nonMineCount}</p>
-      { grid.map((singleRow, index1) => {
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
+        {grid.map((singleRow, index1) => {
 
-        return (
-          <div style={{ display: "flex" }} key={index1}>
-            {singleRow.map((singleBlock, index2) => {
-              return (
-                <Cell
-                  details={singleBlock}
-                  updateFlag={updateFlag}
-                  revealCell={revealCell}
-                  key={index2}
-                />
-              )
-            })}
-          </div>
-        )
-      })}
+          return (
+            <div style={{ display: "flex" }} key={index1}>
+              {singleRow.map((singleBlock, index2) => {
+                return (
+                  <Cell
+                    details={singleBlock}
+                    updateFlag={updateFlag}
+                    revealCell={revealCell}
+                    key={index2}
+                  />
+                )
+              })}
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 
