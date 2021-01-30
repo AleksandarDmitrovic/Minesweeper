@@ -5,16 +5,21 @@ import Cell from "./Cell";
 export default function Board() {
   const [grid, setGrid] = useState([]);
 
+  // ComponentDidMount
   useEffect(() => {
+    //Creating a board
     function freshBoard() {
       const newBoard = createBoard(5, 5, 10);
       console.log(newBoard);
       setGrid(newBoard.board);
     }
+
     freshBoard();
   }, [])
 
+  // On Right Click Flag Cell
   const updateFlag = (event, x, y) => {
+    // Prevent dropdown menu right click
     event.preventDefault();
     let newGrid = JSON.parse(JSON.stringify(grid));
 
@@ -26,18 +31,26 @@ export default function Board() {
     console.log("Right Click")
   }
 
+  // Reveal Cell
+  const revealCell = (x, y) => {
+    let newGrid = JSON.parse(JSON.stringify(grid));
+    newGrid[x][y].revealed = true;
+    setGrid(newGrid)
+  }
+
 
 
 
   return grid.map((singleRow, index1) => {
 
     return (
-      <div style={{ display: "flex" }}> key={index1}
+      <div style={{ display: "flex" }} key={index1}>
         {singleRow.map((singleBlock, index2) => {
           return (
             <Cell
               details={singleBlock}
               updateFlag={updateFlag}
+              revealCell={revealCell}
               key={index2}
             />
           )
