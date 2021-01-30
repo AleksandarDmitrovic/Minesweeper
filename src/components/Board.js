@@ -9,7 +9,7 @@ export default function Board() {
   useEffect(() => {
     //Creating a board
     function freshBoard() {
-      const newBoard = createBoard(5, 5, 10);
+      const newBoard = createBoard(16, 16, 40);
       console.log(newBoard);
       setGrid(newBoard.board);
     }
