@@ -1,10 +1,11 @@
 
 
 export default function Cell(props) {
-  const { details } = props;
+  const { details, updateFlag } = props;
 
   return (
     <div
+      onContextMenu={(event) => updateFlag(event)}
       onClick={() => console.log(details)}
       style={style.cellStyle} >
       { details.value}

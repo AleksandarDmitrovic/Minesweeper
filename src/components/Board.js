@@ -14,6 +14,11 @@ export default function Board() {
     freshBoard();
   }, [])
 
+  const updateFlag = (event) => {
+    event.preventDefault();
+    console.log("Right Click")
+  }
+
 
   if (!grid.board) {
     return <div>loading</div>
@@ -25,7 +30,10 @@ export default function Board() {
       <div style={{ display: "flex" }}>
         {singleRow.map(singleBlock => {
           return (
-            <Cell details={singleBlock} />
+            <Cell
+              details={singleBlock}
+              updateFlag={updateFlag}
+            />
           )
         })}
       </div>
