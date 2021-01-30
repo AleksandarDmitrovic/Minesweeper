@@ -29,15 +29,16 @@ export default function Board() {
 
 
 
-  return grid.map(singleRow => {
+  return grid.map((singleRow, index1) => {
 
     return (
-      <div style={{ display: "flex" }}>
-        {singleRow.map(singleBlock => {
+      <div style={{ display: "flex" }}> key={index1}
+        {singleRow.map((singleBlock, index2) => {
           return (
             <Cell
               details={singleBlock}
               updateFlag={updateFlag}
+              key={index2}
             />
           )
         })}
