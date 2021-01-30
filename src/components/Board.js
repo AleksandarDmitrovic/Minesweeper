@@ -9,22 +9,27 @@ export default function Board() {
     function freshBoard() {
       const newBoard = createBoard(5, 5, 10);
       console.log(newBoard);
-      setGrid(newBoard);
+      setGrid(newBoard.board);
     }
     freshBoard();
   }, [])
 
-  const updateFlag = (event) => {
+  const updateFlag = (event, x, y) => {
     event.preventDefault();
+    let newGrid = JSON.parse(JSON.stringify(grid));
+
+    newGrid[x][y].flagged = true;
+    console.log('newGrid[x][y] :', newGrid[x][y]);
+
+
+    setGrid(newGrid);
     console.log("Right Click")
   }
 
 
-  if (!grid.board) {
-    return <div>loading</div>
-  }
 
-  return grid.board.map(singleRow => {
+
+  return grid.map(singleRow => {
 
     return (
       <div style={{ display: "flex" }}>

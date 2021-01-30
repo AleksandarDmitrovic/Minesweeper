@@ -5,7 +5,7 @@ export default function Cell(props) {
 
   return (
     <div
-      onContextMenu={(event) => updateFlag(event)}
+      onContextMenu={(event) => updateFlag(event, details.x, details.y)}
       onClick={() => console.log(details)}
       style={style.cellStyle} >
       { details.value}
