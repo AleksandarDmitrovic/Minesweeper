@@ -54,7 +54,7 @@ export default function createBoard(row, col, bombs) {
       }
 
       // Bottom Right
-      if (roww < row - 1 && coll < col - 1 && board[roww - 1][coll + 1].value === "X") {
+      if (roww < row - 1 && coll < col - 1 && board[roww + 1][coll + 1].value === "X") {
         board[roww][coll].value++;
       }
 
