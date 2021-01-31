@@ -13,16 +13,22 @@ export default function Board() {
 
   // ComponentDidMount
   useEffect(() => {
-    //Creating a board
-    function freshBoard() {
-      const newBoard = createBoard(16, 16, 40);
-      setNonMineCount(16 * 16 - 40);
-      setMineLocations(newBoard.mineLocation);
-      setGrid(newBoard.board);
-    }
-
     freshBoard();
   }, [])
+
+  //Creating a board
+  const freshBoard = () => {
+    const newBoard = createBoard(16, 16, 40);
+    setNonMineCount(16 * 16 - 40);
+    setMineLocations(newBoard.mineLocation);
+    setGrid(newBoard.board);
+  };
+
+  // Restart Game
+  const restartGame = () => {
+    freshBoard();
+    setGameOver(false);
+  };
 
   // On Right Click Flag Cell
   const updateFlag = (event, x, y) => {
@@ -47,7 +53,6 @@ export default function Board() {
 
     let newGrid = JSON.parse(JSON.stringify(grid));
     if (newGrid[x][y].value === "X") {
-      alert('game over');
       for (let i = 0; i < mineLocations.length; i++) {
         newGrid[mineLocations[i][0]][mineLocations[i][1]].revealed = true;
       }
@@ -71,7 +76,7 @@ export default function Board() {
       <p>Minesweeper</p>
       <Timer />
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: "relative" }}>
-        {gameOver && <Modal />}
+        {gameOver && <Modal restartGame={restartGame} />}
         {grid.map((singleRow, index1) => {
 
           return (

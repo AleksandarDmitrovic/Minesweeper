@@ -16,7 +16,10 @@ export default function Modal(props) {
       style={{ opacity: render ? 1 : 0 }}
     >
       <div id="gameOverImage"></div>
-      <div className="tryAgain">
+      <div
+        className="tryAgain"
+        onClick={() => props.restartGame()}
+      >
         Try Again
       </div>
     </div>
