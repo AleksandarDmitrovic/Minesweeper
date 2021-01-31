@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import createBoard from "../helpers/createBoard";
 import Cell from "./Cell";
 import revealed from "../helpers/reveal";
+import Modal from "./Modal";
 
 export default function Board() {
   const [grid, setGrid] = useState([]);
@@ -66,8 +67,9 @@ export default function Board() {
 
   return (
     <div>
-      <p>{JSON.stringify(gameOver)} & {nonMineCount}</p>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
+      <p>Minesweeper</p>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: "relative" }}>
+        {gameOver && <Modal />}
         {grid.map((singleRow, index1) => {
 
           return (

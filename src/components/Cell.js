@@ -1,6 +1,6 @@
 import mineColor from '../helpers/mineColor';
 import Bomb from './Bomb';
-import '../Cell.css';
+import '../styling/Cell.css';
 
 export default function Cell(props) {
   const { details, updateFlag, revealCell } = props;
