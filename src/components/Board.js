@@ -3,6 +3,7 @@ import createBoard from "../helpers/createBoard";
 import Cell from "./Cell";
 import revealed from "../helpers/reveal";
 import Modal from "./Modal";
+import Timer from "./Timer";
 
 export default function Board() {
   const [grid, setGrid] = useState([]);
@@ -68,6 +69,7 @@ export default function Board() {
   return (
     <div>
       <p>Minesweeper</p>
+      <Timer />
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: "relative" }}>
         {gameOver && <Modal />}
         {grid.map((singleRow, index1) => {
