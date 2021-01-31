@@ -30,20 +30,6 @@ export default function Board() {
     setGameOver(false);
   };
 
-  // On Right Click Flag Cell
-  const updateFlag = (event, x, y) => {
-    // Prevent dropdown menu right click
-    event.preventDefault();
-    let newGrid = JSON.parse(JSON.stringify(grid));
-
-    newGrid[x][y].flagged = true;
-    console.log('newGrid[x][y] :', newGrid[x][y]);
-
-
-    setGrid(newGrid);
-    console.log("Right Click")
-  }
-
   // Reveal Cell
   const revealCell = (x, y) => {
     // Reveal once only
@@ -68,7 +54,11 @@ export default function Board() {
     }
   }
 
-
+  const flagCell = (x, y) => {
+    let newBoardValues = JSON.parse(JSON.stringify(grid));
+    newBoardValues[x][y].flagged = !newBoardValues[x][y].flagged;
+    setGrid(newBoardValues);
+  }
 
 
   return (
@@ -77,15 +67,15 @@ export default function Board() {
       <Timer />
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: "relative" }}>
         {gameOver && <Modal restartGame={restartGame} />}
-        {grid.map((singleRow, index1) => {
+        {grid.map((row, index1) => {
 
           return (
             <div style={{ display: "flex" }} key={index1}>
-              {singleRow.map((singleBlock, index2) => {
+              {row.map((cell, index2) => {
                 return (
                   <Cell
-                    details={singleBlock}
-                    updateFlag={updateFlag}
+                    data={cell}
+                    flagCell={flagCell}
                     revealCell={revealCell}
                     key={index2}
                   />

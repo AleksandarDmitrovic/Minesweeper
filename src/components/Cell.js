@@ -3,27 +3,48 @@ import Bomb from './Bomb';
 import '../styling/Cell.css';
 
 export default function Cell(props) {
-  const { details, updateFlag, revealCell } = props;
+  const { data, flagCell, revealCell } = props;
 
   const cellstyle = {
-    background: details.revealed
-      ? details.value === "X"
+    background: data.revealed
+      ? data.value === "X"
         ? mineColor()
-        : bombChexPattern(details.x, details.y)
-      : chexPattern(details.x, details.y),
-    color: numColorCode(details.value)
+        : bombChexPattern(data.x, data.y)
+      : chexPattern(data.x, data.y),
+    color: numColorCode(data.value)
   }
+
+  const onClickReveal = (event) => {
+    if (data.flagged) {
+      return;
+    }
+    console.log(event.type);
+    revealCell(data.x, data.y);
+  };
+
+  const onContextMenuFlag = (event) => {
+    event.preventDefault();
+    flagCell(data.x, data.y)
+  };
 
   return (
     <div
-      onContextMenu={(event) => updateFlag(event, details.x, details.y)}
-      onClick={() => revealCell(details.x, details.y)}
+      onContextMenu={(event) => onContextMenuFlag(event)}
+      onClick={(event) => onClickReveal(event)}
       style={cellstyle}
       className="cell"
     >
-      { details.revealed && details.flagged ? ("🚩") : details.revealed && details.value !== 0 ? (details.value === "X" ? (<Bomb />) : details.value) : ("")}
-      {/* { details.revealed ? details.value : ""} */}
-      {/* { details.value !== 0 && details.value} */}
+      {data.flagged && !data.revealed ? (
+        "🚩"
+      ) : data.revealed && data.value !== 0 ? (
+        data.value === "X" ? (
+          <Bomb />
+        ) : (
+            data.value
+          )
+      ) : (
+            ""
+          )}
     </ div>
   )
 };
@@ -65,7 +86,7 @@ const numColorCode = (num) => {
     return "#7c21a2";
   } else if (num === 5) {
     return "#1976d2";
-  } else if (num === 6) {
+  } else if (num === 6 || num === 7 || num === 8) {
     return "#1976d2";
   } else {
     return "white";
