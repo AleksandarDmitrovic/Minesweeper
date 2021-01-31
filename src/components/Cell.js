@@ -1,4 +1,5 @@
 import mineColor from '../helpers/mineColor';
+import Bomb from './Bomb';
 import '../Cell.css';
 
 export default function Cell(props) {
@@ -10,6 +11,7 @@ export default function Cell(props) {
         ? mineColor()
         : bombChexPattern(details.x, details.y)
       : chexPattern(details.x, details.y),
+    color: numColorCode(details.value)
   }
 
   return (
@@ -19,7 +21,8 @@ export default function Cell(props) {
       style={cellstyle}
       className="cell"
     >
-      { details.revealed ? details.value : ""}
+      { details.revealed && details.flagged ? ("🚩") : details.revealed && details.value !== 0 ? (details.value === "X" ? (<Bomb />) : details.value) : ("")}
+      {/* { details.revealed ? details.value : ""} */}
       {/* { details.value !== 0 && details.value} */}
     </ div>
   )
@@ -48,5 +51,23 @@ const chexPattern = (x, y) => {
     return "#a2d249";
   } else {
     return "#aad751";
+  }
+};
+
+const numColorCode = (num) => {
+  if (num === 1) {
+    return "#1976d2";
+  } else if (num === 2) {
+    return "#388d3c";
+  } else if (num === 3) {
+    return "#d33030";
+  } else if (num === 4) {
+    return "#7c21a2";
+  } else if (num === 5) {
+    return "#1976d2";
+  } else if (num === 6) {
+    return "#1976d2";
+  } else {
+    return "white";
   }
 };
