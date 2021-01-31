@@ -1,8 +1,12 @@
 .modal {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
   height: 100%;
   width: 100%;
   position: absolute;
   background: rgba(0,0,0,0.3);
+  
 }
 
 #gameOverImage {
@@ -36,11 +40,15 @@
 }
 
 .tryAgain {
+  display: flex;
+  justify-content: center;
+  width: 100px;
   cursor: pointer;
   margin: 0 50px;
   border-radius: 7px;
+  border: white solid 2px;
   background: darkgreen;
-  color: rgb(158, 255, 158);
+  color: rgb(184, 246, 184);
   padding: 10px;
-  font-weight: 700;
+  font-weight: 900;
 }
