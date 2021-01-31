@@ -7,6 +7,7 @@ export default function Board() {
   const [grid, setGrid] = useState([]);
   const [nonMineCount, setNonMineCount] = useState(0);
   const [mineLocations, setMineLocations] = useState([]);
+  const [gameOver, setGameOver] = useState(false);
 
   // ComponentDidMount
   useEffect(() => {
@@ -38,7 +39,7 @@ export default function Board() {
   // Reveal Cell
   const revealCell = (x, y) => {
     // Reveal once only
-    if (grid[x][y].revealed) {
+    if (grid[x][y].revealed || gameOver) {
       return;
     }
 
@@ -49,10 +50,14 @@ export default function Board() {
         newGrid[mineLocations[i][0]][mineLocations[i][1]].revealed = true;
       }
       setGrid(newGrid);
+      setGameOver(true);
     } else {
       let newRevealedBoard = revealed(newGrid, x, y, nonMineCount)
       setGrid(newRevealedBoard.arr);
       setNonMineCount(newRevealedBoard.newNonMinesCount)
+      if (newRevealedBoard.newNonMinesCount === 0) {
+        setGameOver(true);
+      }
     }
   }
 
@@ -61,7 +66,7 @@ export default function Board() {
 
   return (
     <div>
-      <p>{nonMineCount}</p>
+      <p>{JSON.stringify(gameOver)} & {nonMineCount}</p>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
         {grid.map((singleRow, index1) => {
 
