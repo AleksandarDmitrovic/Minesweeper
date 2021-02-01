@@ -63,7 +63,6 @@ export default function Board() {
 
   return (
     <div>
-      <p>Minesweeper</p>
       <Timer />
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: "relative" }}>
         {gameOver && <Modal restartGame={restartGame} />}

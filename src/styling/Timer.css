@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-size: large;
+  background: maroon;
+  width: 640px;
+}

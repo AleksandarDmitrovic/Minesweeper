@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import '../styling/Timer.css'
 
 export default function Timer() {
   let [time, setTime] = useState(0);
@@ -14,11 +15,13 @@ export default function Timer() {
   }, [time]);
 
   return (
-    <div style={{ color: "white", fontSize: 20, background: "maroon" }}>
-      <span role="img" aria-label="clock" style={{ paddingRight: 10 }}>
-        ⏰
+    <div className="container">
+      <div className="timer">
+        <span role="img" aria-label="clock">
+          ⏰
       </span>
-      {time}
+        {time}
+      </div>
     </div>
   );
 }
