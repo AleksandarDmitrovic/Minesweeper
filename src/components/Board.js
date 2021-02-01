@@ -63,7 +63,7 @@ export default function Board() {
 
   return (
     <div>
-      <Timer />
+      <Timer gameOver={gameOver} />
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: "relative" }}>
         {gameOver && <Modal restartGame={restartGame} />}
         {grid.map((row, index1) => {

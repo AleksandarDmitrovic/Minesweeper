@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import '../styling/Timer.css'
 
-export default function Timer() {
+export default function Timer(props) {
   let [time, setTime] = useState(0);
+  let { gameOver } = props
+
 
   useEffect(() => {
     function incrementTime(props) {
@@ -11,8 +13,12 @@ export default function Timer() {
         setTime(newTime);
       }, 1000)
     }
-    incrementTime();
-  }, [time]);
+    if (gameOver) {
+      return;
+    } else {
+      incrementTime();
+    }
+  }, [time, gameOver]);
 
   return (
     <div className="container">
